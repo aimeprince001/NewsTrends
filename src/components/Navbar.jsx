@@ -59,6 +59,11 @@ export default function Navbar() {
             {t('saved')}{' '}
             {ids.length > 0 && <span className="nav-count">{ids.length}</span>}
           </NavLink>
+          {user?.isAdmin && (
+            <NavLink to="/admin" onClick={() => setMenuOpen(false)}>
+              Admin
+            </NavLink>
+          )}
           {user && (
             <NavLink to="/profile" onClick={() => setMenuOpen(false)}>
               {t('dashboard')}
