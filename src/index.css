@@ -2457,7 +2457,7 @@ button {
   width: 100%;
   background: #050505;
   color: #f8fafc;
-  border-top: 1px solid rgba(124, 58, 237, .18);
+  border-top: 1px solid rgba(225, 29, 72, .18);
 }
 .newhub-footer-glow {
   position: absolute;
@@ -2465,8 +2465,8 @@ button {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 0% 50%, rgba(124, 58, 237, .18), transparent 38%),
-    radial-gradient(ellipse at 100% 15%, rgba(124, 58, 237, .13), transparent 34%);
+    radial-gradient(ellipse at 0% 50%, rgba(225, 29, 72, .18), transparent 38%),
+    radial-gradient(ellipse at 100% 15%, rgba(244, 63, 94, .14), transparent 34%);
 }
 .newhub-footer-inner {
   position: relative;
@@ -2486,12 +2486,12 @@ button {
   text-decoration: none;
   transition: transform .25s ease, filter .25s ease;
 }
-.newhub-footer-logo:hover { transform: translateY(-3px); filter: drop-shadow(0 0 12px rgba(124,58,237,.45)); }
-.newhub-logo-icon { display: inline-flex; width: 46px; height: 46px; color: #7c3aed; transition: transform .25s ease; }
+.newhub-footer-logo:hover { transform: translateY(-3px); filter: drop-shadow(0 0 12px rgba(225,29,72,.45)); }
+.newhub-logo-icon { display: inline-flex; width: 46px; height: 46px; color: #e11d48; transition: transform .25s ease; }
 .newhub-footer-logo:hover .newhub-logo-icon { transform: rotate(-5deg) scale(1.04); }
 .newhub-logo-icon svg { width: 100%; height: 100%; }
 .newhub-logo-word { font-size: 1.75rem; font-weight: 800; letter-spacing: -.055em; }
-.newhub-logo-word b { color: #7c3aed; font-weight: 800; }
+.newhub-logo-word b { color: #e11d48; font-weight: 800; }
 .newhub-footer-brand p {
   max-width: 330px;
   margin: 22px 0 18px;
@@ -2504,8 +2504,8 @@ button {
   width: 54px;
   height: 3px;
   border-radius: 99px;
-  background: linear-gradient(90deg, #7c3aed, #a78bfa);
-  box-shadow: 0 0 18px rgba(124,58,237,.5);
+  background: linear-gradient(90deg, #e11d48, #f43f5e);
+  box-shadow: 0 0 18px rgba(225,29,72,.5);
 }
 .newhub-footer-col h2 {
   position: relative;
@@ -2524,7 +2524,7 @@ button {
   width: 36px;
   height: 3px;
   border-radius: 99px;
-  background: #7c3aed;
+  background: #e11d48;
 }
 .newhub-footer-col > a,
 .newhub-footer-col > div {
@@ -2541,11 +2541,11 @@ button {
   overflow-wrap: anywhere;
   transition: color .2s ease, transform .2s ease;
 }
-.newhub-footer-col > a:hover { color: #a78bfa; transform: translateX(4px); }
-.newhub-arrow { flex: 0 0 13px; color: #7c3aed; font-size: .82rem; line-height: 1.6; }
+.newhub-footer-col > a:hover { color: #f43f5e; transform: translateX(4px); }
+.newhub-arrow { flex: 0 0 13px; color: #e11d48; font-size: .82rem; line-height: 1.6; }
 .newhub-contact > a, .newhub-contact > div { gap: 12px; }
-.newhub-contact-icon { flex: 0 0 18px; width: 18px; height: 18px; color: #8b5cf6; transition: transform .2s ease, color .2s ease; }
-.newhub-contact > a:hover .newhub-contact-icon { color: #c4b5fd; transform: scale(1.12); }
+.newhub-contact-icon { flex: 0 0 18px; width: 18px; height: 18px; color: #f43f5e; transition: transform .2s ease, color .2s ease; }
+.newhub-contact > a:hover .newhub-contact-icon { color: #fb7185; transform: scale(1.12); }
 .newhub-footer-bottom {
   position: relative;
   width: min(1200px, calc(100% - 56px));
