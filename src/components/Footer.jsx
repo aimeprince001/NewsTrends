@@ -58,6 +58,22 @@ export default function Footer() {
         </section>
       </div>
 
+        <section className="newhub-footer-col newhub-social" aria-label="Follow us">
+          <h2>Follow Us</h2>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+            <span>YouTube</span>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="2.3"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" strokeWidth="2.3"/><circle cx="17.6" cy="6.5" r="1.3" fill="currentColor"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.6 5.6a5.8 5.8 0 0 1-3.5-3.5A6.5 6.5 0 0 1 15.8 1h-4.1v14.2a2.8 2.8 0 1 1-2.8-2.8c.5 0 .9.1 1.3.3V8.5a7.2 7.2 0 0 0-1.3-.1 6.9 6.9 0 1 0 6.9 6.9V8a9.7 9.7 0 0 0 5.4 1.7V5.6h-1.6Z"/></svg>
+            <span>TikTok</span>
+          </a>
+        </section>
+
       <div className="newhub-footer-bottom">
         <p>Copyright © 2026 NewHub. All Rights Reserved.</p>
       </div>
