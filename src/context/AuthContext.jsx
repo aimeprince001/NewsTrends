@@ -56,6 +56,9 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     let mounted = true
+    // Remove legacy localStorage accounts that stored passwords in plain text.
+    localStorage.removeItem('trendz_users')
+    localStorage.removeItem('trendz_session')
     supabase.auth.getSession().then(async ({ data, error }) => {
       if (error) console.error(error.message)
       if (mounted) {
