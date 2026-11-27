@@ -379,6 +379,7 @@ button {
 }
 
 .live-dot {
+  position: relative;
   width: 8px;
   height: 8px;
   flex: 0 0 8px;
@@ -386,6 +387,21 @@ button {
   background: #fff;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
   animation: live-pulse 1.7s ease-out infinite;
+}
+
+
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  animation: live-ring 1.7s ease-out infinite;
+}
+
+@keyframes live-ring {
+  0% { transform: scale(0.65); opacity: 0.85; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 @keyframes live-pulse {
@@ -444,6 +460,7 @@ button {
 .ticker-cat {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
   padding: 4px 9px;
   border: 1px solid color-mix(in srgb, var(--brand) 28%, transparent);
   border-radius: 999px;
@@ -462,9 +479,17 @@ button {
 }
 
 .ticker-item-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
   color: var(--brand);
-  font-size: 0.95rem;
-  opacity: 0.55;
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.72;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
