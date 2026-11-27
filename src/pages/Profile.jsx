@@ -97,11 +97,11 @@ export default function Profile() {
     if (file) readImage(file, setBanner)
   }
 
-  const saveProfile = (e) => {
+  const saveProfile = async (e) => {
     e.preventDefault()
     setErr('')
     setSaved(false)
-    const res = updateProfile({ name, avatar, banner })
+    const res = await updateProfile({ name, avatar, banner })
     if (res.ok) {
       setSaved(true)
       setTimeout(() => setSaved(false), 2500)
