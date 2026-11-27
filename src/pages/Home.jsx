@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import Hero from '../components/Hero'
 import NewsCard from '../components/NewsCard'
-import { getArticles, getTrending } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useLang } from '../context/LanguageContext'
 
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
     { id: 'Most Read', label: t('filterMostRead') },
   ]
 
-  const all = getArticles(lang)
-  const trending = getTrending(lang)
+  const { articles: all } = useNewsArticles(lang)
+  const trending = all.filter((a) => a.trending).slice(0, 6)
 
   const list = useMemo(() => {
     if (filter === 'Trending') return all.filter((a) => a.trending)
