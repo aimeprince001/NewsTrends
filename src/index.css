@@ -2570,3 +2570,45 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .newhub-footer-logo, .newhub-logo-icon, .newhub-footer-col > a, .newhub-contact-icon { transition: none; }
 }
+
+/* Admin shortcut inside the user dashboard */
+.admin-dashboard-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding: 20px 22px;
+  border: 1px solid color-mix(in srgb, var(--brand) 38%, var(--border));
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--brand) 12%, var(--bg-card)), var(--bg-card));
+  box-shadow: 0 8px 26px color-mix(in srgb, var(--brand) 10%, transparent);
+}
+.admin-dashboard-entry h2 {
+  margin: 4px 0 5px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+.admin-dashboard-entry p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+.admin-dashboard-kicker {
+  color: var(--brand);
+  font-size: .68rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+@media (max-width: 560px) {
+  .admin-dashboard-entry {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 17px;
+  }
+  .admin-dashboard-entry .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
