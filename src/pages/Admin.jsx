@@ -73,8 +73,8 @@ export default function Admin() {
     const file = event.target.files?.[0]
     if (!file) return
 
-    if (!file.type.startsWith('image/')) {
-      setError('Please choose an image file.')
+    if (!['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.type)) {
+      setError('Please choose a JPG, PNG, WEBP, or GIF image.')
       event.target.value = ''
       return
     }
@@ -231,7 +231,7 @@ export default function Admin() {
               <label>Article content<textarea required rows="9" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder="Write the full story here" /></label>
               <label className="admin-image-upload">
                 Upload cover image from your computer
-                <input type="file" accept="image/*" onChange={uploadCoverImage} disabled={uploadingImage} />
+                <input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={uploadCoverImage} disabled={uploadingImage} />
                 <small>{uploadingImage ? 'Uploading image…' : 'Choose a photo (JPG, PNG, WEBP) up to 5 MB.'}</small>
               </label>
               {form.image_url && <div className="admin-image-preview">
