@@ -17,12 +17,12 @@ export default function Login() {
   const change = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
     setError('')
-    const res = login(form)
+    const res = await login(form)
     if (res.ok) navigate(from, { replace: true })
-    else setError(t('invalidCred'))
+    else setError(res.error || t('invalidCred'))
   }
 
   return (
