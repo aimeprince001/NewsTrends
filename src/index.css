@@ -1,8 +1,8 @@
 /* ============ THEME TOKENS ============ */
 :root {
-  --brand: #7c3aed;
-  --brand-2: #a78bfa;
-  --brand-glow: rgba(124, 58, 237, 0.42);
+  --brand: #e11d48;
+  --brand-2: #f43f5e;
+  --brand-glow: rgba(225, 29, 72, 0.45);
   --radius: 16px;
   --radius-sm: 10px;
   --maxw: 1240px;
@@ -12,10 +12,10 @@
 }
 
 [data-theme='dark'] {
-  --bg: #050505;
-  --bg-soft: #0b0b10;
-  --bg-card: #101016;
-  --bg-elev: #181321;
+  --bg: #0b0e14;
+  --bg-soft: #121722;
+  --bg-card: #161c28;
+  --bg-elev: #1d2534;
   --text: #e8ecf3;
   --text-dim: #9aa4b8;
   --border: rgba(255, 255, 255, 0.08);
@@ -374,12 +374,12 @@ button {
   padding: 0 18px;
   flex-shrink: 0;
   color: #fff;
-  background: #7c3aed;
+  background: #e11d48;
   font-size: 0.76rem;
   font-weight: 850;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 8px 0 20px rgba(124, 58, 237, 0.2);
+  box-shadow: 8px 0 20px rgba(225, 29, 72, 0.16);
 }
 
 .live-dot {
@@ -523,7 +523,7 @@ button {
   background: radial-gradient(
     circle,
     var(--brand-glow) 0%,
-    rgba(167, 139, 250, 0.12) 45%,
+    rgba(244, 63, 94, 0.12) 45%,
     transparent 70%
   );
   filter: blur(8px);
@@ -2569,30 +2569,4 @@ button {
 }
 @media (prefers-reduced-motion: reduce) {
   .newhub-footer-logo, .newhub-logo-icon, .newhub-footer-col > a, .newhub-contact-icon { transition: none; }
-}
-
-
-/* Unified NewHub purple-black site theme */
-[data-theme='dark'] body {
-  background:
-    radial-gradient(ellipse at 8% 0%, rgba(124, 58, 237, .075), transparent 32rem),
-    radial-gradient(ellipse at 92% 18%, rgba(124, 58, 237, .045), transparent 28rem),
-    var(--bg);
-}
-[data-theme='dark'] .navbar {
-  background: rgba(5, 5, 5, .88);
-  border-bottom-color: rgba(124, 58, 237, .2);
-}
-[data-theme='dark'] .ticker {
-  background: linear-gradient(90deg, #09090d, #111018);
-  border-bottom-color: rgba(124, 58, 237, .18);
-}
-[data-theme='dark'] .section-head h2,
-[data-theme='dark'] .page-title h1 {
-  text-shadow: 0 0 24px rgba(124, 58, 237, .08);
-}
-[data-theme='dark'] .trending-item:hover,
-[data-theme='dark'] .news-card:hover,
-[data-theme='dark'] .article-card:hover {
-  box-shadow: 0 12px 32px rgba(124, 58, 237, .09);
 }
