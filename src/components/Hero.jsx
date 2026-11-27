@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getArticles, categoryLabel } from '../data/newsData'
+import { categoryLabel } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useLang } from '../context/LanguageContext'
 
 export default function Hero() {
   const { lang, t } = useLang()
-  const slides = getArticles(lang)
-    .filter((a) => a.featured)
-    .slice(0, 4)
+  const { articles } = useNewsArticles(lang)
+  const slides = articles.filter((a) => a.featured).slice(0, 4)
   const [index, setIndex] = useState(0)
   const [cursor, setCursor] = useState({ x: 0, y: 0, active: false })
   const wrapRef = useRef(null)
