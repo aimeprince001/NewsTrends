@@ -29,7 +29,7 @@ export default function Admin() {
       supabase.from('news_comments').select('id,body,status,created_at,news_articles(title)').order('created_at', { ascending: false }).limit(50),
       supabase.from('profiles').select('id,full_name,email,created_at').order('created_at', { ascending: false }).limit(100),
     ])
-    const problem = articleRes.error || categoryRes.error || commentRes.error
+    const problem = articleRes.error || categoryRes.error || commentRes.error || userRes.error
     if (problem) setError(problem.message)
     if (articleRes.data) setArticles(articleRes.data)
     if (categoryRes.data) setCategories(categoryRes.data)
