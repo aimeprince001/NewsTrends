@@ -345,81 +345,150 @@ button {
   color: #fff;
 }
 
-/* ============ TICKER ============ */
+/* ============ LIVE NEWS TICKER ============ */
 .ticker {
+  position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0;
-  background: var(--bg-soft);
-  border-bottom: 1px solid var(--border);
+  height: 54px;
   overflow: hidden;
-  height: 42px;
+  background: linear-gradient(90deg, var(--bg-soft), var(--bg-card));
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  isolation: isolate;
 }
 
 .ticker-label {
-  display: flex;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: var(--brand);
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  padding: 0 16px;
-  height: 100%;
+  justify-content: center;
+  gap: 9px;
+  min-width: 122px;
+  padding: 0 18px;
   flex-shrink: 0;
+  color: #fff;
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 8px 0 20px rgba(225, 29, 72, 0.16);
 }
 
 .live-dot {
   width: 8px;
   height: 8px;
+  flex: 0 0 8px;
   border-radius: 50%;
   background: #fff;
-  animation: pulse 1.4s infinite;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
+  animation: live-pulse 1.7s ease-out infinite;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-  70% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+  75%, 100% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+}
+
+.ticker-window {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
 }
 
 .ticker-track {
   display: flex;
-  gap: 42px;
+  align-items: center;
+  width: max-content;
+  flex: 0 0 auto;
+  gap: 30px;
+  padding: 0 24px;
   white-space: nowrap;
-  padding-left: 20px;
-  animation: scroll 32s linear infinite;
+  will-change: transform;
+  animation: ticker-marquee 42s linear infinite;
 }
 
-.ticker:hover .ticker-track {
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
   animation-play-state: paused;
 }
 
 .ticker-item {
-  font-size: 0.86rem;
-  color: var(--text-dim);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  max-width: min(620px, 70vw);
+  color: var(--text-dim);
+  font-size: 0.86rem;
+  font-weight: 550;
+  line-height: 1.3;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.ticker-item:hover {
+.ticker-item:hover,
+.ticker-item:focus-visible {
   color: var(--text);
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .ticker-cat {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border: 1px solid color-mix(in srgb, var(--brand) 28%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
   color: var(--brand);
-  font-weight: 700;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.055em;
   text-transform: uppercase;
-  font-size: 0.72rem;
+  flex-shrink: 0;
 }
 
-@keyframes scroll {
+.ticker-headline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ticker-item-mark {
+  color: var(--brand);
+  font-size: 0.95rem;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ticker-item:hover .ticker-item-mark {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+@keyframes ticker-marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
+@media (max-width: 640px) {
+  .ticker { height: 48px; }
+  .ticker-label { min-width: 92px; padding: 0 12px; font-size: 0.7rem; }
+  .ticker-track { gap: 22px; padding: 0 16px; animation-duration: 34s; }
+  .ticker-item { font-size: 0.8rem; max-width: 78vw; }
+  .ticker-cat { font-size: 0.62rem; padding: 3px 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot { animation: none; }
+  .ticker-track { animation-duration: 90s; }
+}
 /* ============ HERO (sliding cursor) ============ */
 .hero {
   position: relative;
