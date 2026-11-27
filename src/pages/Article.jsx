@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { getArticleById, getArticlesByCategory, categoryLabel } from '../data/newsData'
+import { categoryLabel } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useBookmarks } from '../context/BookmarksContext'
 import { useHistory } from '../context/HistoryContext'
 import { useLang } from '../context/LanguageContext'
@@ -9,7 +10,8 @@ import NewsCard from '../components/NewsCard'
 export default function Article() {
   const { id } = useParams()
   const { lang, t } = useLang()
-  const article = getArticleById(id, lang)
+  const { articles } = useNewsArticles(lang)
+  const article = articles.find((a) => String(a.id) === String(id))
   const { has, toggle } = useBookmarks()
   const { record } = useHistory()
 
@@ -31,9 +33,7 @@ export default function Article() {
   }
 
   const saved = has(article.id)
-  const related = getArticlesByCategory(article.category, lang)
-    .filter((a) => a.id !== article.id)
-    .slice(0, 3)
+  const related = articles.filter((a) => a.category === article.category && a.id !== article.id).slice(0, 3)
 
   return (
     <div className="page article-page">
