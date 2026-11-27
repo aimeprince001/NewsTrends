@@ -2,24 +2,6 @@ import { Link } from 'react-router-dom'
 import { getTrending, categoryLabel } from '../data/newsData'
 import { useLang } from '../context/LanguageContext'
 
-const categoryIcons = {
-  world: '🌍',
-  politics: '🏛️',
-  business: '📈',
-  technology: '💻',
-  tech: '💻',
-  sports: '🏆',
-  entertainment: '🎬',
-  health: '🩺',
-  science: '🔬',
-  lifestyle: '✨',
-  default: '📰',
-}
-
-function categoryIcon(category) {
-  return categoryIcons[String(category || '').toLowerCase()] || categoryIcons.default
-}
-
 export default function LiveTicker() {
   const { lang, t } = useLang()
   const base = getTrending(lang)
@@ -42,9 +24,9 @@ export default function LiveTicker() {
               aria-hidden={i >= base.length ? true : undefined}
               tabIndex={i >= base.length ? -1 : undefined}
             >
-              <span className="ticker-cat"><span className="ticker-cat-icon" aria-hidden="true">{categoryIcon(a.category)}</span>{categoryLabel(a.category, lang)}</span>
+              <span className="ticker-cat">{categoryLabel(a.category, lang)}</span>
               <span className="ticker-headline">{a.title}</span>
-              <span className="ticker-item-mark" aria-hidden="true">→</span>
+              <span className="ticker-item-mark" aria-hidden="true">↗</span>
             </Link>
           ))}
         </div>
