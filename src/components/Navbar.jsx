@@ -152,7 +152,7 @@ export default function Navbar() {
       <div className="cat-strip">
         {categories.map((c) => (
           <NavLink key={c.id} to={c.id === 'all' ? '/' : `/category/${c.id}`}>
-            <span>{c.icon}</span> {categoryLabel(c.id, lang)}
+            {categoryLabel(c.id, lang)}
           </NavLink>
         ))}
       </div>
