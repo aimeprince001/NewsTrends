@@ -2612,3 +2612,42 @@ button {
     justify-content: center;
   }
 }
+
+
+/* Article cover image uploader */
+.admin-image-upload input[type="file"] {
+  padding: 10px;
+  border: 1px dashed color-mix(in srgb, var(--brand) 45%, var(--border));
+  background: color-mix(in srgb, var(--brand) 5%, var(--bg-card));
+  cursor: pointer;
+}
+.admin-image-upload input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e11d48, #f472b6);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.admin-image-upload small {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 500;
+}
+.admin-image-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.admin-image-preview img {
+  display: block;
+  width: min(100%, 360px);
+  max-height: 220px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
