@@ -12,6 +12,8 @@ import Category from './pages/Category'
 import Search from './pages/Search'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import Admin from './pages/Admin'
+import AdminRoute from './components/AdminRoute'
 
 export default function App() {
   return (
@@ -26,6 +28,7 @@ export default function App() {
           <Route path="/article/:id" element={<Article />} />
           <Route path="/category/:id" element={<Category />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
           <Route
             path="/bookmarks"
             element={
