@@ -18,6 +18,7 @@ export default function Admin() {
   const [categoryName, setCategoryName] = useState('')
   const [categorySlug, setCategorySlug] = useState('')
   const [busy, setBusy] = useState(false)
+  const [uploadingImage, setUploadingImage] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
@@ -66,6 +67,45 @@ export default function Admin() {
   const resetForm = () => {
     setEditingId(null)
     setForm(emptyArticle)
+  }
+
+  const uploadCoverImage = async (event) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    if (!file.type.startsWith('image/')) {
+      setError('Please choose an image file.')
+      event.target.value = ''
+      return
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Image must be smaller than 5 MB.')
+      event.target.value = ''
+      return
+    }
+
+    setUploadingImage(true)
+    setError('')
+    setMessage('')
+    try {
+      const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg'
+      const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '-')
+      const filePath = `${user.id}/${crypto.randomUUID()}-${safeName || `cover.${extension}`}`
+      const { error: uploadError } = await supabase.storage
+        .from('article-images')
+        .upload(filePath, file, { contentType: file.type, cacheControl: '3600', upsert: false })
+
+      if (uploadError) throw uploadError
+
+      const { data } = supabase.storage.from('article-images').getPublicUrl(filePath)
+      setForm((current) => ({ ...current, image_url: data.publicUrl }))
+      setMessage('Cover image uploaded. Save the article to keep it.')
+    } catch (uploadError) {
+      setError(uploadError.message || 'Could not upload the image. Check the Storage bucket and upload permissions.')
+    } finally {
+      setUploadingImage(false)
+      event.target.value = ''
+    }
   }
 
   const saveArticle = async (event) => {
@@ -189,13 +229,22 @@ export default function Admin() {
               <label>Headline<input required maxLength={180} value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Enter a clear headline" /></label>
               <label>Short summary<textarea required rows="3" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} placeholder="A short introduction for the news card" /></label>
               <label>Article content<textarea required rows="9" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder="Write the full story here" /></label>
-              <label>Cover image URL<input type="url" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." /></label>
+              <label className="admin-image-upload">
+                Upload cover image from your computer
+                <input type="file" accept="image/*" onChange={uploadCoverImage} disabled={uploadingImage} />
+                <small>{uploadingImage ? 'Uploading image…' : 'Choose a photo (JPG, PNG, WEBP) up to 5 MB.'}</small>
+              </label>
+              {form.image_url && <div className="admin-image-preview">
+                <img src={form.image_url} alt="Article cover preview" />
+                <button type="button" className="btn btn-ghost btn-sm" onClick={() => setForm({ ...form, image_url: '' })}>Remove image</button>
+              </div>}
+              <label>Or paste a cover image URL<input type="url" value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." /></label>
               <div className="admin-form-row">
                 <label>Category<select value={form.category_id} onChange={(e) => setForm({ ...form, category_id: e.target.value })}><option value="">Choose category</option>{categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
                 <label>Publish status<select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })}><option value="draft">Draft</option><option value="published">Published</option><option value="archived">Archived</option></select></label>
               </div>
               <label className="admin-featured"><input type="checkbox" checked={form.is_featured} onChange={(e) => setForm({ ...form, is_featured: e.target.checked })} /> Feature this story</label>
-              <div className="admin-form-actions"><button type="button" className="btn btn-ghost" onClick={resetForm}>Clear</button><button disabled={busy} className="btn btn-primary" type="submit">{busy ? 'Saving…' : form.status === 'published' ? 'Publish story' : 'Save draft'}</button></div>
+              <div className="admin-form-actions"><button type="button" className="btn btn-ghost" onClick={resetForm}>Clear</button><button disabled={busy || uploadingImage} className="btn btn-primary" type="submit">{busy ? 'Saving…' : form.status === 'published' ? 'Publish story' : 'Save draft'}</button></div>
             </form>
           </div>}
 
