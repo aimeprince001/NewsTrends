@@ -1,13 +1,15 @@
 import { Link, useSearchParams } from 'react-router-dom'
-import { searchArticles } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useLang } from '../context/LanguageContext'
 import NewsCard from '../components/NewsCard'
 
 export default function Search() {
   const [params] = useSearchParams()
-  const { t } = useLang()
+  const { lang, t } = useLang()
   const q = params.get('q') || ''
-  const results = searchArticles(q)
+  const { articles } = useNewsArticles(lang)
+  const term = q.trim().toLowerCase()
+  const results = articles.filter((a) => !term || [a.title, a.excerpt, a.category, a.author].some((v) => (v || '').toLowerCase().includes(term)))
 
   return (
     <div className="page">
