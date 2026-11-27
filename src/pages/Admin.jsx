@@ -12,6 +12,7 @@ export default function Admin() {
   const [articles, setArticles] = useState([])
   const [categories, setCategories] = useState([])
   const [comments, setComments] = useState([])
+  const [users, setUsers] = useState([])
   const [form, setForm] = useState(emptyArticle)
   const [editingId, setEditingId] = useState(null)
   const [categoryName, setCategoryName] = useState('')
@@ -22,16 +23,18 @@ export default function Admin() {
 
   const loadData = async () => {
     setError('')
-    const [articleRes, categoryRes, commentRes] = await Promise.all([
+    const [articleRes, categoryRes, commentRes, userRes] = await Promise.all([
       supabase.from('news_articles').select('id,title,slug,status,is_featured,created_at,published_at,news_categories(name)').order('created_at', { ascending: false }).limit(100),
       supabase.from('news_categories').select('id,name,slug').order('name'),
       supabase.from('news_comments').select('id,body,status,created_at,news_articles(title)').order('created_at', { ascending: false }).limit(50),
+      supabase.from('profiles').select('id,full_name,email,created_at').order('created_at', { ascending: false }).limit(100),
     ])
     const problem = articleRes.error || categoryRes.error || commentRes.error
     if (problem) setError(problem.message)
     if (articleRes.data) setArticles(articleRes.data)
     if (categoryRes.data) setCategories(categoryRes.data)
     if (commentRes.data) setComments(commentRes.data)
+    if (userRes.data) setUsers(userRes.data)
   }
 
   useEffect(() => { loadData() }, [])
@@ -41,7 +44,8 @@ export default function Admin() {
     published: articles.filter((a) => a.status === 'published').length,
     drafts: articles.filter((a) => a.status === 'draft').length,
     pending: comments.filter((c) => c.status === 'pending').length,
-  }), [articles, comments])
+    users: users.length,
+  }), [articles, comments, users])
 
   const editArticle = async (article) => {
     const { data, error: loadError } = await supabase.from('news_articles').select('*').eq('id', article.id).single()
@@ -148,6 +152,7 @@ export default function Admin() {
             ['write', editingId ? 'Edit article' : 'Write article'],
             ['categories', 'Categories'],
             ['comments', 'Comments'],
+            ['users', 'Users'],
           ].map(([key, label]) => (
             <button key={key} className={tab === key ? 'active' : ''} onClick={() => setTab(key)}>
               <span>{label}</span>{key === 'comments' && stats.pending > 0 && <b>{stats.pending}</b>}
@@ -198,6 +203,11 @@ export default function Admin() {
             <div className="admin-panel-head"><div><h2>Categories</h2><p>Organize stories by topic</p></div></div>
             <form className="admin-category-form" onSubmit={addCategory}><input required value={categoryName} onChange={(e) => { setCategoryName(e.target.value); if (!categorySlug) setCategorySlug(slugify(e.target.value)) }} placeholder="Category name" /><input value={categorySlug} onChange={(e) => setCategorySlug(slugify(e.target.value))} placeholder="category-slug" /><button className="btn btn-primary" type="submit">Add category</button></form>
             <div className="admin-category-grid">{categories.map((c) => <div key={c.id}><span className="admin-category-dot" /><strong>{c.name}</strong><small>/{c.slug}</small></div>)}</div>
+          </div>}
+
+          {tab === 'users' && <div className="admin-panel">
+            <div className="admin-panel-head"><div><h2>User directory</h2><p>Registered NewsTrends readers</p></div><span className="admin-count">{users.length} users</span></div>
+            {users.length === 0 ? <div className="admin-empty">No registered users yet.</div> : <div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Joined</th></tr></thead><tbody>{users.map((u) => <tr key={u.id}><td><strong>{u.full_name || 'Reader'}</strong></td><td>{u.email || '—'}</td><td>{u.created_at ? new Date(u.created_at).toLocaleDateString() : '—'}</td></tr>)}</tbody></table></div>}
           </div>}
 
           {tab === 'comments' && <div className="admin-panel">
