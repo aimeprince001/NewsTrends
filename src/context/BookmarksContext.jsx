@@ -9,6 +9,10 @@ export function BookmarksProvider({ children }) {
   const [ids, setIds] = useState([])
 
   useEffect(() => {
+    localStorage.removeItem('trendz_bookmarks')
+  }, [])
+
+  useEffect(() => {
     let active = true
     if (!user) {
       setIds([])
