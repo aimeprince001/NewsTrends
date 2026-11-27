@@ -25,7 +25,7 @@ export default function Admin() {
     const [articleRes, categoryRes, commentRes] = await Promise.all([
       supabase.from('news_articles').select('id,title,slug,status,is_featured,created_at,published_at,news_categories(name)').order('created_at', { ascending: false }).limit(100),
       supabase.from('news_categories').select('id,name,slug').order('name'),
-      supabase.from('news_comments').select('id,body,status,created_at,news_articles(title),profiles(full_name)').order('created_at', { ascending: false }).limit(50),
+      supabase.from('news_comments').select('id,body,status,created_at,news_articles(title)').order('created_at', { ascending: false }).limit(50),
     ])
     const problem = articleRes.error || categoryRes.error || commentRes.error
     if (problem) setError(problem.message)
