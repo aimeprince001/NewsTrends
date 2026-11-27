@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import { getTrending, categoryLabel } from '../data/newsData'
+import { categoryLabel } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useLang } from '../context/LanguageContext'
 
 export default function LiveTicker() {
   const { lang, t } = useLang()
-  const base = getTrending(lang)
+  const { articles } = useNewsArticles(lang)
+  const base = articles.filter((a) => a.trending)
   // Duplicate the list so the marquee can loop without a visible jump.
   const items = [...base, ...base]
 
