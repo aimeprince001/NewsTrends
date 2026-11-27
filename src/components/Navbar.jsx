@@ -25,7 +25,7 @@ export default function Navbar() {
     <header className="navbar">
       <div className="nav-inner">
         <Link to="/" className="brand">
-          <span className="brand-mark">N</span>
+          <span className="brand-mark"><img src={`${import.meta.env.BASE_URL}logo.svg`} alt="" /></span>
           <span className="brand-text">New Trendz</span>
         </Link>
 
