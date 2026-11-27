@@ -24,8 +24,8 @@ export default function Footer() {
               <svg viewBox="0 0 40 40" fill="none">
                 <rect x="1" y="1" width="38" height="38" rx="12" fill="currentColor" fillOpacity=".13" stroke="currentColor" strokeOpacity=".5"/>
                 <path d="M9 27V13h4l9 9V13h4v14h-4l-9-9v9H9Z" fill="currentColor"/>
-                <path d="m27 9 5 0 0 5" stroke="#A78BFA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="m32 9-8 8" stroke="#A78BFA" strokeWidth="2.5" strokeLinecap="round"/>
+                <path d="m27 9 5 0 0 5" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="m32 9-8 8" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round"/>
               </svg>
             </span>
             <span className="newhub-logo-word"><span>New</span><b>Hub</b></span>
