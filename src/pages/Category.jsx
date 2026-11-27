@@ -12,7 +12,6 @@ export default function Category() {
   return (
     <div className="page">
       <div className="page-hero">
-        <div className="page-hero-icon">{cat?.icon || '📰'}</div>
         <div>
           <h1>{categoryLabel(id, lang)}</h1>
           <p className="muted">
