@@ -31,20 +31,26 @@ export default function Register() {
   const strength = strengthOf(form.password)
   const strengthLabels = [t('weak'), t('fair'), t('good'), t('strong'), t('excellent')]
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
     setError('')
     if (form.password !== form.confirm) {
       setError(t('passwordMismatch'))
       return
     }
-    const res = register({
+    const res = await register({
       name: form.name,
       email: form.email,
       password: form.password,
     })
-    if (res.ok) navigate('/', { replace: true })
-    else setError(t('exists'))
+    if (res.ok && res.needsConfirmation) {
+      navigate('/login', { replace: true })
+      window.alert('Account created. Please check your email to confirm your account, then sign in.')
+    } else if (res.ok) {
+      navigate('/', { replace: true })
+    } else {
+      setError(res.error || t('exists'))
+    }
   }
 
   return (
