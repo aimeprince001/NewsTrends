@@ -1,4 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#e11d48"/>
-  <path d="M18 44V20h5l14 16V20h5v24h-5L23 28v16z" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>New Trendz</title>
+  <defs>
+    <linearGradient id="brand" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff496c"/>
+      <stop offset="1" stop-color="#d4145a"/>
+    </linearGradient>
+    <linearGradient id="page" x1="18" y1="15" x2="46" y2="49" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eaf3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#101827"/>
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="url(#brand)" opacity=".18"/>
+  <path d="M16 15.5c0-2.5 2-4.5 4.5-4.5H43c2.8 0 5 2.2 5 5v32c0 1.1-.9 2-2 2H20.5A4.5 4.5 0 0 1 16 45.5z" fill="url(#page)"/>
+  <path d="M22 20h18M22 25h12" stroke="#a8b5c9" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M21 40.5l8-7 6 4 10-11" fill="none" stroke="url(#brand)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M38.5 26.5H45v6.5" fill="none" stroke="#ed245f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="21" cy="40.5" r="2.5" fill="#ff496c"/>
 </svg>
