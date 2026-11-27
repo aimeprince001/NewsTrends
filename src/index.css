@@ -2651,3 +2651,27 @@ button {
   border: 1px solid var(--border);
   border-radius: 12px;
 }
+
+/* Footer social media links */
+.newhub-social > a {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 17px;
+  color: #c7c9d1;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.newhub-social > a svg {
+  flex: 0 0 23px;
+  width: 23px;
+  height: 23px;
+  color: #d1d5db;
+  transition: color .2s ease, transform .2s ease;
+}
+.newhub-social > a:hover svg {
+  color: #f43f5e;
+  transform: scale(1.1);
+}
+.newhub-social > a:hover {
+  color: #fda4af;
+}
