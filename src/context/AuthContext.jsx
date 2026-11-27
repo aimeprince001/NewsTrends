@@ -3,13 +3,14 @@ import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext(null)
 
-const toAppUser = (authUser, profile = {}) => ({
+const toAppUser = (authUser, profile = {}, isAdmin = false) => ({
   id: authUser.id,
   name: profile.full_name || authUser.user_metadata?.full_name || authUser.email?.split('@')[0] || 'Reader',
   email: authUser.email || '',
   avatar: profile.avatar_url || '',
   banner: profile.banner_url || '',
   joined: profile.created_at ? new Date(profile.created_at).getTime() : new Date(authUser.created_at).getTime(),
+  isAdmin,
 })
 
 async function getProfile(authUser) {
@@ -47,7 +48,9 @@ export function AuthProvider({ children }) {
     }
     try {
       const profile = await getProfile(authUser)
-      setUser(toAppUser(authUser, profile))
+      const { data: adminStatus, error: adminError } = await supabase.rpc('is_news_admin')
+      if (adminError) console.error('Could not check admin access:', adminError.message)
+      setUser(toAppUser(authUser, profile, adminStatus === true))
     } catch (error) {
       console.error('Could not load NewsTrends profile:', error.message)
       setUser(toAppUser(authUser))
