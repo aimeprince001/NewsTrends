@@ -361,7 +361,7 @@ button {
 
 .ticker-label {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +370,7 @@ button {
   padding: 0 18px;
   flex-shrink: 0;
   color: #fff;
-  background: linear-gradient(135deg, #e11d48, #be123c);
+  background: #e11d48;
   font-size: 0.76rem;
   font-weight: 850;
   letter-spacing: 0.12em;
@@ -400,8 +400,9 @@ button {
   overflow: hidden;
   display: flex;
   align-items: center;
-  mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2.5%, #000 97.5%, transparent 100%);
+  /* Clip headlines at the LIVE badge edge; only fade them out at the far right. */
+  mask-image: linear-gradient(90deg, #000 0%, #000 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 96%, transparent 100%);
 }
 
 .ticker-track {
