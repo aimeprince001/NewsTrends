@@ -56,7 +56,6 @@ export default function Footer() {
           <a href="mailto:info@newhub.com"><ContactIcon type="email" /><span>info@newhub.com</span></a>
           <div><ContactIcon type="location" /><span>Rwanda</span></div>
         </section>
-      </div>
 
         <section className="newhub-footer-col newhub-social" aria-label="Follow us">
           <h2>Follow Us</h2>
@@ -73,6 +72,9 @@ export default function Footer() {
             <span>TikTok</span>
           </a>
         </section>
+      </div>
+
+
 
       <div className="newhub-footer-bottom">
         <p>Copyright © 2026 NewHub. All Rights Reserved.</p>
