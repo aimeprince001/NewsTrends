@@ -153,6 +153,18 @@ export default function Profile() {
         <div className="profile-main">
           {tab === 'overview' && (
             <div className="profile-pane">
+              {user?.isAdmin && (
+                <section className="admin-dashboard-entry">
+                  <div>
+                    <span className="admin-dashboard-kicker">ADMIN TOOLS</span>
+                    <h2>Admin Dashboard</h2>
+                    <p>Manage news articles, categories, and community content.</p>
+                  </div>
+                  <Link to="/admin" className="btn btn-primary btn-sm">
+                    Open Admin Panel <span aria-hidden="true">↗</span>
+                  </Link>
+                </section>
+              )}
               <div className="stat-grid">
                 <div className="stat-card">
                   <span className="stat-icon">★</span>
