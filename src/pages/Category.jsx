@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
-import { getArticlesByCategory, categories, categoryLabel } from '../data/newsData'
+import { categories, categoryLabel } from '../data/newsData'
+import { useNewsArticles } from '../data/useNewsArticles'
 import { useLang } from '../context/LanguageContext'
 import NewsCard from '../components/NewsCard'
 
@@ -7,7 +8,8 @@ export default function Category() {
   const { id } = useParams()
   const { lang, t } = useLang()
   const cat = categories.find((c) => c.id === id)
-  const list = getArticlesByCategory(id, lang)
+  const { articles } = useNewsArticles(lang)
+  const list = id === 'all' ? articles : articles.filter((a) => a.category === id)
 
   return (
     <div className="page">
