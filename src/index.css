@@ -2471,7 +2471,7 @@ button {
 .newhub-footer-inner {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(220px, 1.55fr) repeat(3, minmax(145px, 1fr));
+  grid-template-columns: minmax(200px, 1.35fr) repeat(4, minmax(125px, 1fr));
   gap: clamp(26px, 4vw, 58px);
   width: min(1200px, 100%);
   margin: 0 auto;
