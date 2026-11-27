@@ -2448,3 +2448,125 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* NewHub premium footer */
+.newhub-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  background: #050505;
+  color: #f8fafc;
+  border-top: 1px solid rgba(124, 58, 237, .18);
+}
+.newhub-footer-glow {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 50%, rgba(124, 58, 237, .18), transparent 38%),
+    radial-gradient(ellipse at 100% 15%, rgba(124, 58, 237, .13), transparent 34%);
+}
+.newhub-footer-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.55fr) repeat(3, minmax(145px, 1fr));
+  gap: clamp(26px, 4vw, 58px);
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 64px 28px 52px;
+}
+.newhub-footer-brand, .newhub-footer-col { min-width: 0; }
+.newhub-footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  transition: transform .25s ease, filter .25s ease;
+}
+.newhub-footer-logo:hover { transform: translateY(-3px); filter: drop-shadow(0 0 12px rgba(124,58,237,.45)); }
+.newhub-logo-icon { display: inline-flex; width: 46px; height: 46px; color: #7c3aed; transition: transform .25s ease; }
+.newhub-footer-logo:hover .newhub-logo-icon { transform: rotate(-5deg) scale(1.04); }
+.newhub-logo-icon svg { width: 100%; height: 100%; }
+.newhub-logo-word { font-size: 1.75rem; font-weight: 800; letter-spacing: -.055em; }
+.newhub-logo-word b { color: #7c3aed; font-weight: 800; }
+.newhub-footer-brand p {
+  max-width: 330px;
+  margin: 22px 0 18px;
+  color: #a1a1aa;
+  font-size: .92rem;
+  line-height: 1.85;
+}
+.newhub-brand-underline {
+  display: block;
+  width: 54px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  box-shadow: 0 0 18px rgba(124,58,237,.5);
+}
+.newhub-footer-col h2 {
+  position: relative;
+  margin: 5px 0 27px;
+  padding-bottom: 14px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -.015em;
+}
+.newhub-footer-col h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 99px;
+  background: #7c3aed;
+}
+.newhub-footer-col > a,
+.newhub-footer-col > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 15px;
+  color: #a1a1aa;
+  font-size: .9rem;
+  line-height: 1.55;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color .2s ease, transform .2s ease;
+}
+.newhub-footer-col > a:hover { color: #a78bfa; transform: translateX(4px); }
+.newhub-arrow { flex: 0 0 13px; color: #7c3aed; font-size: .82rem; line-height: 1.6; }
+.newhub-contact > a, .newhub-contact > div { gap: 12px; }
+.newhub-contact-icon { flex: 0 0 18px; width: 18px; height: 18px; color: #8b5cf6; transition: transform .2s ease, color .2s ease; }
+.newhub-contact > a:hover .newhub-contact-icon { color: #c4b5fd; transform: scale(1.12); }
+.newhub-footer-bottom {
+  position: relative;
+  width: min(1200px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 24px 0 28px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  text-align: center;
+}
+.newhub-footer-bottom p { margin: 0; color: #85858e; font-size: .84rem; line-height: 1.7; }
+@media (max-width: 900px) {
+  .newhub-footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 44px; padding: 52px 28px 40px; }
+  .newhub-footer-brand p { max-width: 420px; }
+}
+@media (max-width: 560px) {
+  .newhub-footer-inner { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 42px 22px 32px; }
+  .newhub-footer-brand p { max-width: 100%; }
+  .newhub-footer-col h2 { margin-bottom: 22px; }
+  .newhub-footer-col > a, .newhub-footer-col > div { margin-bottom: 13px; }
+  .newhub-footer-bottom { width: calc(100% - 44px); padding: 20px 0 24px; }
+  .newhub-footer-bottom p { font-size: .78rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .newhub-footer-logo, .newhub-logo-icon, .newhub-footer-col > a, .newhub-contact-icon { transition: none; }
+}
